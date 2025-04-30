@@ -183,13 +183,438 @@
 // 	}
 // }
 
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	fmt.Println(`
+// 	fdsfdfsdfsd
+// 	`)
+// 	fmt.Println("fkksdksdfk")
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	var a []int
+// 	fmt.Println(a, len(a), cap(a))
+// 	a = append(a, 4, 3, 4)
+// 	fmt.Println(a, len(a), cap(a))
+// 	a = append(a, 4)
+// 	fmt.Println(a, len(a), cap(a))
+// 	fmt.Println(a[3:5], a)
+
+// 	b := [12]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
+// 	c := b[9:12]
+// 	fmt.Println(len(c), cap(c))
+
+// 	baseSlice := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+// 	shortSlice := baseSlice[3:5]
+// 	shortSlice = append(shortSlice, 66, 77, 88)
+// 	fmt.Println(baseSlice, shortSlice)
+// 	shortSlice = append(shortSlice, 99, 100, 1000, 10000)
+// 	fmt.Println(baseSlice, shortSlice)
+
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"math"
+// )
+
+// func main() {
+// 	var a, b, c float64
+// 	fmt.Scan(&a, &b, &c)
+
+// 	gipotenuza := math.Sqrt(a*a + b*b)
+// 	fmt.Println(gipotenuza)
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	var num, v int
+// 	fmt.Scan(&num)
+// 	nums := make([]int, num, num)
+
+// 	for num != 0 {
+// 		fmt.Scan(&v)
+// 		num--
+// 		nums[num] = v
+// 	}
+
+// 	mn := nums[0]
+// 	for i := 1; i < len(nums); i++ {
+// 		if nums[i] < mn {
+// 			mn = nums[i]
+// 		}
+// 	}
+
+// 	var cnt int
+// 	for i := 0; i < len(nums); i++ {
+// 		if nums[i] == mn {
+// 			cnt++
+// 		}
+// 	}
+// 	fmt.Println(cnt)
+// }
+
+// package main
+
+// import "fmt"
+
+// func getCifrSqrtByStep(n int) int {
+// 	var cifrSqrt int
+// 	for n != 0 {
+// 		cifrSqrt += n % 10
+// 		n /= 10
+// 	}
+// 	if cifrSqrt/10 == 0 {
+// 		return cifrSqrt
+// 	}
+// 	return getCifrSqrtByStep(cifrSqrt)
+// }
+
+// func main() {
+// 	var n int
+// 	fmt.Scan(&n)
+// 	n = getCifrSqrtByStep(n)
+// 	fmt.Println(n)
+// }
+
+// package main
+
+// import "fmt"
+
+// func kratn7(n int) bool {
+// 	part1 := n / 10
+// 	part2 := n % 10
+
+// 	return (part1-part2*2)%7 == 0
+// }
+
+// func main() {
+// 	var n1, n2 int
+// 	kratn := false
+// 	fmt.Scan(&n1, &n2)
+// 	for i := n2; i >= n1; i-- {
+// 		if kratn7(i) {
+// 			fmt.Println(i)
+// 			kratn = true
+// 			break
+// 		}
+// 	}
+// 	if !kratn {
+// 		fmt.Println("NO")
+// 	}
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	var n int
+// 	var str string
+// 	fmt.Scan(&n)
+
+// 	ost := n % 10
+// 	switch {
+// 	case n >= 11 && n <= 20:
+// 		str = fmt.Sprintf("%d korov", n)
+// 	case ost == 1:
+// 		str = fmt.Sprintf("%d korova", n)
+// 	case ost >= 2 && ost <= 4:
+// 		str = fmt.Sprintf("%d korovy", n)
+// 	default:
+// 		str = fmt.Sprintf("%d korov", n)
+// 	}
+// 	fmt.Println(str)
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"math"
+// )
+
+// func main() {
+// 	var n int
+// 	fmt.Scan(&n)
+
+// 	max_stepen := math.Floor(math.Log2(float64(n)))
+// 	cnt := -1
+// 	for cnt < int(max_stepen) {
+// 		cnt++
+// 		fmt.Printf("%.0f ", math.Pow(2.0, float64(cnt)))
+// 	}
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	var A int
+// 	fmt.Scan(&A)
+
+// 	i, j := 1, 1
+// 	cnt := 3
+// 	for i+j < A {
+// 		i, j = i+j, i
+// 		cnt++
+// 	}
+// 	if i+j == A {
+// 		fmt.Println(cnt)
+// 	} else {
+// 		fmt.Println(-1)
+// 	}
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	var n int
+// 	fmt.Scan(&n)
+
+// 	fmt.Printf("%b", n)
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// )
+
+// func main() {
+// 	var n, delete_n int
+// 	var nums []int
+// 	fmt.Scan(&n, &delete_n)
+
+// 	for n != 0 {
+// 		ost := n % 10
+// 		n /= 10
+// 		if ost == delete_n {
+// 			continue
+// 		}
+// 		nums = append(nums, ost)
+// 	}
+
+// 	var result string
+// 	for i := len(nums) - 1; i >= 0; i-- {
+// 		result += fmt.Sprintf("%d", nums[i])
+// 	}
+// 	fmt.Println(result)
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// )
+
+// func sumInt(nums ...int) (int, int) {
+// 	sum := 0
+// 	for _, elem := range nums {
+// 		sum += elem
+// 	}
+// 	return len(nums), sum
+// }
+
+// func main() {
+// 	a, b := sumInt(1, 2, 3, 4)
+// 	fmt.Println(a, b)
+// }
+
+// package main
+
+// import "fmt"
+
+// type Player struct {
+// 	On    bool
+// 	Ammo  int
+// 	Power int
+// }
+
+// func (p *Player) Shoot() bool {
+// 	if !p.On || p.Ammo == 0 {
+// 		return false
+// 	}
+// 	p.Ammo--
+// 	return true
+// }
+
+// func (p *Player) RideBike() bool {
+// 	if !p.On || p.Power == 0 {
+// 		return false
+// 	}
+// 	p.Power--
+// 	return true
+// }
+
+// func main() {
+
+// 	testStruct := Player{true, 3, 4}
+// 	a := testStruct.Shoot()
+// 	fmt.Println(a)
+// 	/*
+// 	 * Экземпляр созданной вами структуры необходимо передать в качестве
+// 	 * аргумента функции testStruct, которая выполнит проверку соблюдения
+// 	 * всех условий задания/
+// 	 */
+
+// }
+
+// package main
+
+// import (
+// 	"bufio"
+// 	"fmt"
+// 	"os"
+// 	"strings"
+// )
+
+// func main() {
+// 	// bs := []byte("hello world")
+// 	// rs := []rune("hello world")
+// 	// js := "hello world"
+
+// 	// fmt.Println(bs[0], rs[0], js[0])
+// 	// fmt.Println(string(bs[0]), string(rs[0]), string(js[0]))
+// 	// fmt.Println(utf8.RuneCountInString(string(rs)))
+// 	text, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+// 	var firstSymbol, lastSymbol string
+// 	for idx, elem := range text {
+// 		if idx == 0 {
+// 			firstSymbol = string(elem)
+// 		}
+// 		if idx == len(text)-3 {
+// 			lastSymbol = string(elem)
+// 		}
+// 	}
+// 	if strings.ToUpper(firstSymbol) == firstSymbol && lastSymbol == "." {
+// 		fmt.Println("Right")
+// 	} else {
+// 		fmt.Println("Wrong")
+// 	}
+// }
+
+// package main
+
+// import "fmt"
+
+// func reverseString(s string) string {
+// 	runes := []rune(s)
+// 	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+// 		runes[i], runes[j] = runes[j], runes[i]
+// 	}
+// 	return string(runes)
+// }
+
+// func main() {
+// 	var v string
+// 	fmt.Scan(&v)
+// 	if v == reverseString(v) {
+// 		fmt.Println("Палиндром")
+// 	} else {
+// 		fmt.Println("Нет")
+// 	}
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"strings"
+// )
+
+// func main() {
+// 	var x, s string
+// 	fmt.Scan(&x, &s)
+// 	fmt.Println(strings.Index(x, s))
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// )
+
+// func main() {
+// 	var s string
+// 	fmt.Scan(&s)
+
+// 	runes := []rune(s)
+// 	var r string
+// 	for i := 1; i < len(runes); i += 2 {
+// 		r += string(runes[i])
+// 	}
+// 	fmt.Println(r)
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"strings"
+// )
+
+// func main() {
+// 	var s string
+// 	fmt.Scan(&s)
+
+// 	runes := []rune(s)
+// 	var r string
+// 	for i := 0; i < len(runes); i++ {
+// 		if strings.Count(s, string(runes[i])) == 1 {
+// 			r += string(runes[i])
+// 		}
+// 	}
+// 	fmt.Println(r)
+// }
+
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+	"unicode/utf8"
+)
 
 func main() {
-	fmt.Println(`
-	fdsfdfsdfsd
-	`)
-	fmt.Println("fkksdksdfk")
+	const VOLUME_ALPHABET = "qwertyuiopasdfghjklzxcvbnm"
+	const VOLUME_NUMS = "0123456789"
+
+	var v string
+	fmt.Scan(&v)
+
+	var wasNum, wasAlphabet bool
+	var msg string
+	for _, elem := range []rune(v) {
+		if strings.Contains(VOLUME_ALPHABET, strings.ToLower(string(elem))) {
+			wasAlphabet = true
+		} else if strings.Contains(VOLUME_NUMS, string(elem)) {
+			wasNum = true
+		} else {
+			msg = "Wrong password"
+			break
+		}
+	}
+
+	if msg == "" && (wasNum || wasAlphabet) && utf8.RuneCountInString(v) >= 5 {
+		msg = "Ok"
+	} else {
+		msg = "Wrong password"
+	}
+	fmt.Println(msg)
 }
