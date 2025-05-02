@@ -583,38 +583,181 @@
 // 	fmt.Println(r)
 // }
 
+// package main
+
+// import (
+// 	"fmt"
+// 	"strings"
+// 	"unicode/utf8"
+// )
+
+// func main() {
+// 	const VOLUME_ALPHABET = "qwertyuiopasdfghjklzxcvbnm"
+// 	const VOLUME_NUMS = "0123456789"
+
+// 	var v string
+// 	fmt.Scan(&v)
+
+// 	var wasNum, wasAlphabet bool
+// 	var msg string
+// 	for _, elem := range []rune(v) {
+// 		if strings.Contains(VOLUME_ALPHABET, strings.ToLower(string(elem))) {
+// 			wasAlphabet = true
+// 		} else if strings.Contains(VOLUME_NUMS, string(elem)) {
+// 			wasNum = true
+// 		} else {
+// 			msg = "Wrong password"
+// 			break
+// 		}
+// 	}
+
+// 	if msg == "" && (wasNum || wasAlphabet) && utf8.RuneCountInString(v) >= 5 {
+// 		msg = "Ok"
+// 	} else {
+// 		msg = "Wrong password"
+// 	}
+// 	fmt.Println(msg)
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// )
+
+// func divide(a, b int) (int, error) {
+// 	if b == 0 {
+// 		return 0, fmt.Errorf("ошибка")
+// 	}
+// 	return a / b, nil
+// }
+
+// func main() {
+// 	var a, b int
+// 	_, err := fmt.Scan(&a, &b)
+// 	if err != nil {
+// 		fmt.Println("ошибка")
+// 	} else {
+// 		res, err := divide(a, b)
+// 		if err != nil {
+// 			fmt.Println("ошибка")
+// 		} else {
+// 			fmt.Println(res)
+// 		}
+// 	}
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"strconv"
+// )
+
+// func main() {
+// 	var str, result string
+// 	fmt.Scan(&str)
+
+// 	for _, elem := range []rune(str) {
+// 		elemInt, _ := strconv.Atoi(string(elem))
+// 		elemIntInSqrt := elemInt * elemInt
+// 		result += fmt.Sprintf("%d", elemIntInSqrt)
+// 	}
+// 	fmt.Println(result)
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	v := 5
+// 	p := &v
+// 	fmt.Print(*p, " ")
+// 	changePointer(&p)
+// 	fmt.Print(*p)
+// }
+
+// func changePointer(p **int) {
+// 	v := 3
+// 	*p = &v
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	v := 5
+// 	p := &v
+// 	fmt.Print(*p, " ")
+// 	changePointer(&v)
+// 	fmt.Print(v, "|", p)
+// }
+
+// func changePointer(v *int) {
+// 	*v = 3
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"math"
+// )
+
+// func T(w float64) float64 {
+// 	return 6 / w
+// }
+
+// func W(k, m float64) float64 {
+// 	return math.Sqrt(k / m)
+// }
+
+// func M(p, v float64) float64 {
+// 	return p * v
+// }
+
+// func main() {
+// 	var k, p, v float64
+// 	fmt.Scan(&k, &p, &v)
+// 	m := M(p, v)
+// 	w := W(k, m)
+// 	t := T(w)
+// 	fmt.Println(t)
+// }
+
 package main
 
-import (
-	"fmt"
-	"strings"
-	"unicode/utf8"
-)
+import "fmt"
 
 func main() {
-	const VOLUME_ALPHABET = "qwertyuiopasdfghjklzxcvbnm"
-	const VOLUME_NUMS = "0123456789"
-
-	var v string
-	fmt.Scan(&v)
-
-	var wasNum, wasAlphabet bool
-	var msg string
-	for _, elem := range []rune(v) {
-		if strings.Contains(VOLUME_ALPHABET, strings.ToLower(string(elem))) {
-			wasAlphabet = true
-		} else if strings.Contains(VOLUME_NUMS, string(elem)) {
-			wasNum = true
-		} else {
-			msg = "Wrong password"
-			break
-		}
+	groupCity := map[int][]string{
+		10:   {"a1", "a2", "a3"},
+		100:  {"b1", "b2", "b3"},
+		1000: {"c1", "c2", "c3"},
+	}
+	cityPopulation := map[string]int{
+		"a1": 10, "a2": 20, "a3": 30, "b1": 100, "b2": 200, "b3": 300, "c1": 1000, "c2": 2000, "c3": 3000,
 	}
 
-	if msg == "" && (wasNum || wasAlphabet) && utf8.RuneCountInString(v) >= 5 {
-		msg = "Ok"
-	} else {
-		msg = "Wrong password"
+	for _, city := range append(groupCity[10], groupCity[1000]...) {
+		delete(cityPopulation, city)
 	}
-	fmt.Println(msg)
+
+	fmt.Println(cityPopulation)
+
+	// for key, _ := range cityPopulation {
+	// 	inCityPopulation := false
+	// 	for _, city := range groupCity[100] {
+	// 		if city == key {
+	// 			inCityPopulation = true
+	// 		}
+	// 	}
+	// 	if !inCityPopulation {
+	// 		delete(cityPopulation, key)
+	// 	}
+	// }
+
+	// fmt.Println(cityPopulation)
 }
