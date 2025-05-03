@@ -727,37 +727,184 @@
 // 	fmt.Println(t)
 // }
 
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	groupCity := map[int][]string{
+// 		10:   {"a1", "a2", "a3"},
+// 		100:  {"b1", "b2", "b3"},
+// 		1000: {"c1", "c2", "c3"},
+// 	}
+// 	cityPopulation := map[string]int{
+// 		"a1": 10, "a2": 20, "a3": 30, "b1": 100, "b2": 200, "b3": 300, "c1": 1000, "c2": 2000, "c3": 3000,
+// 	}
+
+// 	for _, city := range append(groupCity[10], groupCity[1000]...) {
+// 		delete(cityPopulation, city)
+// 	}
+
+// 	fmt.Println(cityPopulation)
+
+// for key, _ := range cityPopulation {
+// 	inCityPopulation := false
+// 	for _, city := range groupCity[100] {
+// 		if city == key {
+// 			inCityPopulation = true
+// 		}
+// 	}
+// 	if !inCityPopulation {
+// 		delete(cityPopulation, key)
+// 	}
+// }
+
+// fmt.Println(cityPopulation)
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"strconv"
+// 	"strings"
+// )
+
+// func getOnlyNum(str string) string {
+// 	const VOLUME = "0123456789"
+// 	var onlyNum string
+// 	for _, char := range str {
+// 		s := string(char)
+// 		if strings.Contains(VOLUME, s) {
+// 			onlyNum += s
+// 		}
+// 	}
+// 	return onlyNum
+// }
+
+// func adding(s1, s2 string) int64 {
+// 	onlyNumS1 := getOnlyNum(s1)
+// 	onlyNumS2 := getOnlyNum(s2)
+// 	num1, _ := strconv.Atoi(onlyNumS1)
+// 	num2, _ := strconv.Atoi(onlyNumS2)
+// 	return int64(num1 + num2)
+// }
+
+// func main() {
+// 	a, b := "%^80", "hhhhh20&&&&nd"
+// 	r := adding(a, b)
+// 	fmt.Println(r)
+// }
+
+// package main
+
+// import (
+// 	"bufio"
+// 	"fmt"
+// 	"os"
+// 	"strconv"
+// 	"strings"
+// )
+
+// func main() {
+// 	text, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+// 	var n1, n2 string
+// 	firstNum := true
+
+// 	for _, char := range text {
+// 		if s := string(char); s != " " {
+// 			if s == ";" {
+// 				firstNum = false
+// 				continue
+// 			}
+// 			if firstNum {
+// 				n1 += s
+// 			} else {
+// 				n2 += s
+// 			}
+// 		}
+// 	}
+
+// 	n1 = strings.Replace(n1, ",", ".", -1)
+// 	n2 = strings.Replace(n2, ",", ".", -1)
+// 	n2 = strings.TrimRight(n2, "\r\n")
+
+// 	num1, _ := strconv.ParseFloat(n1, 64)
+// 	num2, _ := strconv.ParseFloat(n2, 64)
+// 	fmt.Printf("%.4f", num1/num2)
+// }
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"strconv"
+// )
+
+// func ExampleClosure() {
+// 	fn := func() func(int) int {
+// 		count := 0
+// 		return func(i int) int {
+// 			count++
+// 			fmt.Printf("Count: %v\n", count)
+// 			return count * i
+// 		}
+// 	}()
+
+// 	for i := 1; i <= 5; i++ {
+// 		fmt.Println(fn(i))
+// 	}
+// }
+
+// func main() {
+// 	// x := func(fn func(i int) int, i int) func(int) int { return fn }(func(i int) int { return i + 1 }, 5)
+// 	// fmt.Printf("%T", x)
+// 	// ExampleClosure()
+// 	fn := func(num uint) uint {
+// 		str := strconv.FormatUint(uint64(num), 10)
+// 		var result string
+// 		for _, s := range str {
+// 			strToInt, _ := strconv.Atoi(string(s))
+// 			if strToInt%2 == 0 && strToInt != 0 {
+// 				result += string(s)
+// 			}
+// 		}
+// 		if result == "" {
+// 			return 100
+// 		}
+// 		numUint, _ := strconv.ParseUint(result, 10, 64)
+// 		return uint(numUint)
+// 	}
+// 	fmt.Println(fn(777))
+// }
+
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
+
+func someFuncWithPanic() (err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = e.(error)
+		}
+	}()
+
+	panic(errors.New("fatal error"))
+}
+
+func ExamplePanicRecover() {
+	if err := someFuncWithPanic(); err != nil {
+		fmt.Println(err)
+	}
+
+	// Output:
+	// fatal error
+}
 
 func main() {
-	groupCity := map[int][]string{
-		10:   {"a1", "a2", "a3"},
-		100:  {"b1", "b2", "b3"},
-		1000: {"c1", "c2", "c3"},
-	}
-	cityPopulation := map[string]int{
-		"a1": 10, "a2": 20, "a3": 30, "b1": 100, "b2": 200, "b3": 300, "c1": 1000, "c2": 2000, "c3": 3000,
-	}
-
-	for _, city := range append(groupCity[10], groupCity[1000]...) {
-		delete(cityPopulation, city)
-	}
-
-	fmt.Println(cityPopulation)
-
-	// for key, _ := range cityPopulation {
-	// 	inCityPopulation := false
-	// 	for _, city := range groupCity[100] {
-	// 		if city == key {
-	// 			inCityPopulation = true
-	// 		}
-	// 	}
-	// 	if !inCityPopulation {
-	// 		delete(cityPopulation, key)
-	// 	}
-	// }
-
-	// fmt.Println(cityPopulation)
+	ExamplePanicRecover()
+	fmt.Println("После ошибки")
 }
